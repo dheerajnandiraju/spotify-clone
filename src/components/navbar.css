@@ -1,0 +1,145 @@
+::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #2a2a2a; 
+    
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c1c1c1; 
+  }
+
+
+.box{
+    border-radius: 1rem;
+    background-color: #121212;
+    width: 21vw;
+    padding: 1rem;
+    margin-bottom: 0.5vw;
+    margin-left: 0;
+}
+
+.textline{
+    padding: 0.5rem;
+    width: 100%;
+    color: #b3b3b3;
+    background-color: #121212;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+.textline2{
+    color: #b3b3b3;
+    background-color: #121212;
+    font-size: large;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+    align-items: center;
+border-radius: 1rem;
+}
+
+.textline:hover{
+    background-color: 	#1db954;
+    color: white;
+}
+
+button{
+    border:0ch;
+    
+}
+
+
+.textline2:hover{
+    background-color: #212121;
+}
+
+.type{
+    color: white;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    margin-right: 0.2rem;
+    background-color: #212121;
+}
+.type:hover{
+    color: black;
+background-color: white;
+}
+
+.typeActive{
+ 
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    margin-right: 0.2rem;
+    background-color: #212121;
+    color: black;
+    background-color: white;
+}
+
+.cover{
+    margin-left: 1rem;
+    height: 3rem;
+    width: auto;
+  margin-right: 1rem;
+  border-radius: 0.2rem;
+}
+
+#library{
+   
+    width: auto;
+    height: 21rem;
+    overflow-y: scroll;
+}
+
+.lib{
+    font-size: 1rem;
+    padding-top: 1rem;
+    color: white;
+  
+}
+
+.lib:hover{
+    color:#1db954;
+
+font-weight: bold;
+}
+
+.smallbox{
+    padding: 0.7rem;
+    border-radius: 1rem;
+    background-color: #121212;
+
+    margin-bottom: 0.7rem;
+    width: 3vw;
+}
+
+.smallbutton{
+    padding: 0.1rem;
+    width: 100%;
+    color: #b3b3b3;
+    background-color: #121212;
+    margin-bottom: 1rem;
+    align-items: center;
+    border-radius: 1rem;
+}
+
+#smalllib{
+
+    width: auto;
+    height: 21rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
