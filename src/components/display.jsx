@@ -33,9 +33,9 @@ import podcast3 from "../images/podcast3.jpg";
 import podcast4 from "../images/podcast4.jpg";
 import podcast5 from "../images/podcast5.jpg";
 import podcast6 from "../images/podcast6.jpg";
-import context from "react-bootstrap/esm/AccordionContext";
+import { Link } from "react-router-dom";
 
-function Display({ display }, props) {
+function Display({ display, ex }) {
   const data = [
     {
       image: liked,
@@ -240,7 +240,6 @@ function Display({ display }, props) {
     const c = document.getElementById("Podcast");
     const element = document.getElementById(e.target.id);
     setcontent(e.target.id);
-    console.log(content);
     a.style.color = "#b3b3b3";
     a.style.backgroundColor = "#121212";
     b.style.color = "#b3b3b3";
@@ -274,11 +273,11 @@ function Display({ display }, props) {
     return element.type === "Podcast & shows";
   });
 
-  if (props.ex) {
+  if (ex) {
     playlist = playlist.slice(0, 5);
     last = last.slice(0, 6);
   }
-  if (!props.ex) {
+  if (ex) {
     playlist = playlist.slice(0, 6);
     last = last.slice(0, 8);
   }
@@ -313,15 +312,15 @@ function Display({ display }, props) {
         </div>
       </div>
       <div id="view" className="row">
-        <button onClick={show} id="All" className="content">
+        <Link onClick={show} id="All" className="content">
           All
-        </button>
-        <button onClick={show} id="playlist" className="content">
+        </Link>
+        <Link to="/playlist" onClick={show} id="playlist" className="content">
           Playlist
-        </button>
-        <button onClick={show} id="Podcast" className="content">
+        </Link>
+        <Link onClick={show} id="Podcast" className="content">
           Podcast
-        </button>
+        </Link>
       </div>
 
       {content == "playlist" && (
