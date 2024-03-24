@@ -32,8 +32,10 @@ import podcast2 from "../images/podcast2.jpg";
 import podcast3 from "../images/podcast3.jpg";
 import podcast4 from "../images/podcast4.jpg";
 import podcast5 from "../images/podcast5.jpg";
+import podcast6 from "../images/podcast6.jpg";
+import context from "react-bootstrap/esm/AccordionContext";
 
-function Display(props) {
+function Display({ display }, props) {
   const data = [
     {
       image: liked,
@@ -217,10 +219,17 @@ function Display(props) {
       date: "01-09-24",
       played: "",
     },
+    {
+      image: podcast6,
+      name: "podcast 6",
+      type: "Podcast & shows",
+      date: "01-09-24",
+      played: "",
+    },
   ];
   let last = data.slice(0, 8);
 
-  const [conent, setcontent] = useState("All");
+  const [content, setcontent] = useState("All");
   const [play, setplay] = useState(false);
 
   const [hoverid, sethoverid] = useState(undefined);
@@ -231,7 +240,7 @@ function Display(props) {
     const c = document.getElementById("Podcast");
     const element = document.getElementById(e.target.id);
     setcontent(e.target.id);
-
+    console.log(content);
     a.style.color = "#b3b3b3";
     a.style.backgroundColor = "#121212";
     b.style.color = "#b3b3b3";
@@ -239,10 +248,11 @@ function Display(props) {
     c.style.color = "#b3b3b3";
     c.style.backgroundColor = "#121212";
 
-    if (conent === e.target.id) {
+    if (content === e.target.id) {
       element.style.backgroundColor = "white";
       element.style.color = "black";
     }
+    display(content);
   };
   let playlist = data.filter((element) => {
     return element.type === "Playlist";
@@ -253,6 +263,14 @@ function Display(props) {
   });
 
   let podcast = data.filter((element) => {
+    return element.type === "Podcast & shows";
+  });
+
+  let allplaylist = data.filter((element) => {
+    return element.type === "Playlist";
+  });
+
+  let allpodcast = data.filter((element) => {
     return element.type === "Podcast & shows";
   });
 
@@ -305,113 +323,166 @@ function Display(props) {
           Podcast
         </button>
       </div>
-      <div style={{ marginTop: "1rem" }}>
-        {last.map((each) => (
-          <div
-            style={{
-              display: "inline-flex",
-              justifyContent: "center",
-            }}
-          >
-            <button
-              onMouseEnter={() => {
-                setplay(true);
-                sethoverid(each.name);
-              }}
-              onMouseLeave={() => {
-                setplay(false);
-                sethoverid(false);
-              }}
-              style={{ backgroundColor: "rgb(0 0 0 / 0%)" }}
-              id={each.name}
-            >
-              <div className="last spacebetween">
-                <div
+
+      {content == "playlist" && (
+        <div>
+          <div>
+            <div>
+              <h1 style={{ color: "white" }}>Playlists</h1>
+            </div>
+            {allplaylist.map((each) => (
+              <div className="row cards">
+                <button
                   style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
+                    color: "white",
+                    padding: "0rem",
+                    backgroundColor: "rgb(0 0 0 / 0%)",
                   }}
                 >
-                  <img
-                    className="img"
-                    style={{ margin: 0 }}
-                    src={each.image}
-                    alt=""
-                  />
-                  <div className="text">{each.name}</div>
-                </div>
-                <div>
-                  {play && hoverid === each.name && (
-                    <div className="play">
-                      <FaPlay size={15} style={{ margin: "0.2rem" }} />
-                    </div>
-                  )}
-                </div>
+                  <img className="cardimg" src={each.image} alt="" />
+                  <h3>{each.name}</h3>
+                </button>
               </div>
-            </button>
+            ))}
           </div>
-        ))}
-      </div>
-      <div>
-        <div>
-          <h1 style={{ color: "white" }}>Playlists</h1>
         </div>
-        {playlist.map((each) => (
-          <div className="row cards">
-            <button
-              style={{
-                color: "white",
-                padding: "0rem",
-                backgroundColor: "rgb(0 0 0 / 0%)",
-              }}
-            >
-              <img className="cardimg" src={each.image} alt="" />
-              <h3>{each.name}</h3>
-            </button>
-          </div>
-        ))}
-      </div>
+      )}
 
-      <div>
+      {content == "Podcast" && (
         <div>
-          <h1 style={{ color: "white" }}>Albums</h1>
-        </div>
-        {album.map((each) => (
-          <div className="row cards">
-            <button
-              style={{
-                color: "white",
-                padding: "0rem",
-                backgroundColor: "rgb(0 0 0 / 0%)",
-              }}
-            >
-              <img className="cardimg" src={each.image} alt="" />
-              <h3>{each.name}</h3>
-            </button>
+          <div style={{ marginRight: "0.9rem" }}>
+            <div>
+              <h1 style={{ color: "white" }}>Podcast & shows</h1>
+            </div>
+            {allpodcast.map((each) => (
+              <div className="row cards">
+                <button
+                  style={{
+                    color: "white",
+                    padding: "0rem",
+                    backgroundColor: "rgb(0 0 0 / 0%)",
+                  }}
+                >
+                  <img className="cardimg" src={each.image} alt="" />
+                  <h3>{each.name}</h3>
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
 
-      <div>
+      {content == "All" && (
         <div>
-          <h1 style={{ color: "white" }}>Podcast & Shows</h1>
-        </div>
-        {podcast.map((each) => (
-          <div className="row cards">
-            <button
-              style={{
-                color: "white",
-                padding: "0rem",
-                backgroundColor: "rgb(0 0 0 / 0%)",
-              }}
-            >
-              <img className="cardimg" src={each.image} alt="" />
-              <h3>{each.name}</h3>
-            </button>
+          <div style={{ marginTop: "1rem" }}>
+            {last.map((each) => (
+              <div
+                style={{
+                  display: "inline-flex",
+                  justifyContent: "center",
+                }}
+              >
+                <button
+                  onMouseEnter={() => {
+                    setplay(true);
+                    sethoverid(each.name);
+                  }}
+                  onMouseLeave={() => {
+                    setplay(false);
+                    sethoverid(false);
+                  }}
+                  style={{ backgroundColor: "rgb(0 0 0 / 0%)" }}
+                  id={each.name}
+                >
+                  <div className="last spacebetween">
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                      }}
+                    >
+                      <img
+                        className="img"
+                        style={{ margin: 0 }}
+                        src={each.image}
+                        alt=""
+                      />
+                      <div className="text">{each.name}</div>
+                    </div>
+                    <div>
+                      {play && hoverid === each.name && (
+                        <div className="play">
+                          <FaPlay size={15} style={{ margin: "0.2rem" }} />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+          <div>
+            <div>
+              <h1 style={{ color: "white" }}>Playlists</h1>
+            </div>
+            {playlist.map((each) => (
+              <div className="row cards">
+                <button
+                  style={{
+                    color: "white",
+                    padding: "0rem",
+                    backgroundColor: "rgb(0 0 0 / 0%)",
+                  }}
+                >
+                  <img className="cardimg" src={each.image} alt="" />
+                  <h3>{each.name}</h3>
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <div>
+              <h1 style={{ color: "white" }}>Albums</h1>
+            </div>
+            {album.map((each) => (
+              <div className="row cards">
+                <button
+                  style={{
+                    color: "white",
+                    padding: "0rem",
+                    backgroundColor: "rgb(0 0 0 / 0%)",
+                  }}
+                >
+                  <img className="cardimg" src={each.image} alt="" />
+                  <h3>{each.name}</h3>
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div>
+            <div>
+              <h1 style={{ color: "white" }}>Podcast & Shows</h1>
+            </div>
+            {podcast.map((each) => (
+              <div className="row cards">
+                <button
+                  style={{
+                    color: "white",
+                    padding: "0rem",
+                    backgroundColor: "rgb(0 0 0 / 0%)",
+                  }}
+                >
+                  <img className="cardimg" src={each.image} alt="" />
+                  <h3>{each.name}</h3>
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

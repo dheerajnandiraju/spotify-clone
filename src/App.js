@@ -9,18 +9,24 @@ import "./app.css"
 
 const App = () => {
   const [dataFromChild, setDataFromChild] = useState("");
+  const [show, setshow]=useState("")
+
   function handle(data){
     setDataFromChild(!data)
   }
-  console.log(dataFromChild)
+  function showdata(data){
+    setshow(data)
+  }
+  console.log(show)
   return (
+
     <div>
         <div className='row'>
         <Navbar send={handle}/>
-        <Display ex={dataFromChild}/>
+        <Display ex={dataFromChild} showing={showdata}/>
         </div>
     </div>
-  )
+  );
 }
 
 export default App

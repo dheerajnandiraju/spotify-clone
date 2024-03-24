@@ -240,7 +240,7 @@ function Navbar({ send }) {
   const deselect = () => {
     setActive(!active);
     const lib = document.getElementById("library");
-    lib.style.height = "15rem";
+    lib.style.height = "21rem";
     setActiveid(undefined);
   };
 
@@ -284,7 +284,7 @@ function Navbar({ send }) {
               <IoSearch size={30} />
             </button>
           </div>
-          <div className="smallbox" style={{ height: "26.1rem" }}>
+          <div className="smallbox" style={{ height: "27.9rem" }}>
             <button onClick={libactive} className="textline">
               <LuLibrary size={30} />
             </button>
