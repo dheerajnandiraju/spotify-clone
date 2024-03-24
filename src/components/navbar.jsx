@@ -33,7 +33,7 @@ import podcast3 from "../images/podcast3.jpg";
 import podcast4 from "../images/podcast4.jpg";
 import podcast5 from "../images/podcast5.jpg";
 
-const Navbar = () => {
+function Navbar({ send }) {
   //data
 
   const data = [
@@ -260,6 +260,7 @@ const Navbar = () => {
       }
     }
     setExpand(!expandAlive);
+    send(expandAlive);
   };
 
   let filtered = data.filter((element) => {
@@ -511,6 +512,6 @@ const Navbar = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Navbar;

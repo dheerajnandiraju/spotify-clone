@@ -1,6 +1,6 @@
 
 import ReactDOM from 'react-dom'
-import React from 'react'
+import {React, useState} from 'react' 
 
 import Navbar from './components/navbar'
 import Display from './components/display'
@@ -8,12 +8,16 @@ import "./app.css"
 
 
 const App = () => {
+  const [dataFromChild, setDataFromChild] = useState("");
+  function handle(data){
+    setDataFromChild(!data)
+  }
+  console.log(dataFromChild)
   return (
     <div>
         <div className='row'>
-        <Navbar/>
-        <Display/>
-        
+        <Navbar send={handle}/>
+        <Display ex={dataFromChild}/>
         </div>
     </div>
   )

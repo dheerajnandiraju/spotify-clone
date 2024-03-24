@@ -143,3 +143,9 @@ font-weight: bold;
     overflow-y: scroll;
     overflow-x: hidden;
 }
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+}

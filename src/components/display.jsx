@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import expandAlive from "./navbar";
 import "./display.css";
 import { FaAngleLeft } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
@@ -31,9 +32,8 @@ import podcast2 from "../images/podcast2.jpg";
 import podcast3 from "../images/podcast3.jpg";
 import podcast4 from "../images/podcast4.jpg";
 import podcast5 from "../images/podcast5.jpg";
-import { getActiveElement } from "@testing-library/user-event/dist/utils";
 
-function Display() {
+function Display(props) {
   const data = [
     {
       image: liked,
@@ -150,7 +150,7 @@ function Display() {
     {
       image: album1,
       name: "album 1",
-      type: "Album",
+      type: "Albums",
       date: "11-4-99",
       played: "",
     },
@@ -218,9 +218,11 @@ function Display() {
       played: "",
     },
   ];
-  const last = data.slice(0, 8);
+  let last = data.slice(0, 8);
+
   const [conent, setcontent] = useState("All");
   const [play, setplay] = useState(false);
+
   const [hoverid, sethoverid] = useState(undefined);
 
   const show = (e) => {
@@ -245,8 +247,23 @@ function Display() {
   let playlist = data.filter((element) => {
     return element.type === "Playlist";
   });
-  const box = document.getElementsByClassName("display");
 
+  let album = data.filter((element) => {
+    return element.type === "Albums";
+  });
+
+  let podcast = data.filter((element) => {
+    return element.type === "Podcast & shows";
+  });
+
+  if (props.ex) {
+    playlist = playlist.slice(0, 5);
+    last = last.slice(0, 6);
+  }
+  if (!props.ex) {
+    playlist = playlist.slice(0, 6);
+    last = last.slice(0, 8);
+  }
   return (
     <div className="display">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -290,7 +307,12 @@ function Display() {
       </div>
       <div style={{ marginTop: "1rem" }}>
         {last.map((each) => (
-          <div style={{ display: "inline-block" }}>
+          <div
+            style={{
+              display: "inline-flex",
+              justifyContent: "center",
+            }}
+          >
             <button
               onMouseEnter={() => {
                 setplay(true);
@@ -332,22 +354,64 @@ function Display() {
         ))}
       </div>
       <div>
-        <h1 style={{ color: "white" }}>Playlists</h1>
-      </div>
-      {playlist.map((each) => (
-        <div className="row cards">
-          <button
-            style={{
-              color: "white",
-              padding: "0rem",
-              backgroundColor: "rgb(0 0 0 / 0%)",
-            }}
-          >
-            <img className="cardimg" src={each.image} alt="" />
-            <h3>{each.name}</h3>
-          </button>
+        <div>
+          <h1 style={{ color: "white" }}>Playlists</h1>
         </div>
-      ))}
+        {playlist.map((each) => (
+          <div className="row cards">
+            <button
+              style={{
+                color: "white",
+                padding: "0rem",
+                backgroundColor: "rgb(0 0 0 / 0%)",
+              }}
+            >
+              <img className="cardimg" src={each.image} alt="" />
+              <h3>{each.name}</h3>
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div>
+          <h1 style={{ color: "white" }}>Albums</h1>
+        </div>
+        {album.map((each) => (
+          <div className="row cards">
+            <button
+              style={{
+                color: "white",
+                padding: "0rem",
+                backgroundColor: "rgb(0 0 0 / 0%)",
+              }}
+            >
+              <img className="cardimg" src={each.image} alt="" />
+              <h3>{each.name}</h3>
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <div>
+          <h1 style={{ color: "white" }}>Podcast & Shows</h1>
+        </div>
+        {podcast.map((each) => (
+          <div className="row cards">
+            <button
+              style={{
+                color: "white",
+                padding: "0rem",
+                backgroundColor: "rgb(0 0 0 / 0%)",
+              }}
+            >
+              <img className="cardimg" src={each.image} alt="" />
+              <h3>{each.name}</h3>
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
