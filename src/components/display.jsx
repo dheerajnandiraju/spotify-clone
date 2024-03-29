@@ -265,10 +265,6 @@ function Display({ display, ex }) {
     return element.type === "Podcast & shows";
   });
 
-  let allplaylist = data.filter((element) => {
-    return element.type === "Playlist";
-  });
-
   let allpodcast = data.filter((element) => {
     return element.type === "Podcast & shows";
   });
@@ -276,8 +272,10 @@ function Display({ display, ex }) {
   if (ex) {
     playlist = playlist.slice(0, 5);
     last = last.slice(0, 6);
+    podcast = podcast.slice(0, 5);
   }
-  if (ex) {
+  if (!ex) {
+    podcast = podcast.slice(0, 6);
     playlist = playlist.slice(0, 6);
     last = last.slice(0, 8);
   }
@@ -285,12 +283,12 @@ function Display({ display, ex }) {
     <div className="display">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-          <button className="landr">
+          <Link to="/" className="landr">
             <FaAngleLeft size={20} />
-          </button>
-          <button className="landr">
+          </Link>
+          <Link className="landr">
             <FaAngleRight size={20} />
-          </button>
+          </Link>
         </div>
         <div className="row">
           <button style={{ height: "2rem" }} className="exploreP">
@@ -312,40 +310,16 @@ function Display({ display, ex }) {
         </div>
       </div>
       <div id="view" className="row">
-        <Link onClick={show} id="All" className="content">
+        <Link to="/" onClick={show} id="All" className="content">
           All
         </Link>
         <Link to="/playlist" onClick={show} id="playlist" className="content">
           Playlist
         </Link>
-        <Link onClick={show} id="Podcast" className="content">
+        <Link t="/podcast" onClick={show} id="Podcast" className="content">
           Podcast
         </Link>
       </div>
-
-      {content == "playlist" && (
-        <div>
-          <div>
-            <div>
-              <h1 style={{ color: "white" }}>Playlists</h1>
-            </div>
-            {allplaylist.map((each) => (
-              <div className="row cards">
-                <button
-                  style={{
-                    color: "white",
-                    padding: "0rem",
-                    backgroundColor: "rgb(0 0 0 / 0%)",
-                  }}
-                >
-                  <img className="cardimg" src={each.image} alt="" />
-                  <h3>{each.name}</h3>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
 
       {content == "Podcast" && (
         <div>

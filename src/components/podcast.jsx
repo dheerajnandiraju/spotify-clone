@@ -36,7 +36,7 @@ import podcast6 from "../images/podcast6.jpg";
 import context from "react-bootstrap/esm/AccordionContext";
 import { Link } from "react-router-dom";
 
-function Playlist({ display }) {
+function Podcast({ display }) {
   const data = [
     {
       image: liked,
@@ -248,14 +248,15 @@ function Playlist({ display }) {
     }
     display(content);
   };
-  let allplaylist = data.filter((element) => {
-    return element.type === "Playlist";
+
+  let allpodcast = data.filter((element) => {
+    return element.type === "Podcast & shows";
   });
   return (
     <div className="display">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <div>
-          <Link to="/" className="landr">
+          <Link to='/' className="landr">
             <FaAngleLeft size={20} />
           </Link>
           <Link className="landr">
@@ -294,11 +295,11 @@ function Playlist({ display }) {
       </div>
 
       <div>
-        <div>
+        <div style={{ marginRight: "0.9rem" }}>
           <div>
-            <h1 style={{ color: "white" }}>Playlists</h1>
+            <h1 style={{ color: "white" }}>Podcast & shows</h1>
           </div>
-          {allplaylist.map((each) => (
+          {allpodcast.map((each) => (
             <div className="row cards">
               <button
                 style={{
@@ -318,4 +319,4 @@ function Playlist({ display }) {
   );
 }
 
-export default Playlist;
+export default Podcast;

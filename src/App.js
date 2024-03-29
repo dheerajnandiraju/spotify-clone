@@ -7,6 +7,7 @@ import Display from './components/display'
 import "./app.css"
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Playlist from './components/playlist'
+import Podcast from './components/podcast'
 
 
 const App = () => {
@@ -19,7 +20,7 @@ const App = () => {
   function showdata(data){
     setshow(data)
   }
-  console.log(show)
+  console.log(dataFromChild)
   return (
 
     <div>
@@ -29,6 +30,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Display ex={dataFromChild} display={showdata}/>}/>
           <Route path='/playlist' element={<Playlist/>}/>
+          <Route path='/playlist' element={<Podcast/>}/>
         </Routes>
         </BrowserRouter>
         </div>
