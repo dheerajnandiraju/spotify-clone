@@ -14,11 +14,16 @@ import cover7 from "../images/cover7.jpg";
 import cover8 from "../images/cover8.jpg";
 import cover9 from "../images/cover9.jpg";
 import cover10 from "../images/cover10.jpg";
-import artist1 from "../images/artist1.png";
-import artist2 from "../images/artist2.png";
-import artist3 from "../images/artist3.png";
-import artist4 from "../images/artist4.png";
-import artist5 from "../images/artist5.png";
+import song1 from "../images/song1.jpg"
+import song2 from "../images/song1.jpg"
+import song3 from "../images/song1.jpg"
+import song4 from "../images/song1.jpg"
+import song5 from "../images/song1.jpg"
+import song6 from "../images/song1.jpg"
+import song7 from "../images/song1.jpg"
+import song8 from "../images/song1.jpg"
+import song9 from "../images/song1.jpg"
+
 import album1 from "../images/album1.jpg";
 import album2 from "../images/album2.jpg";
 import album3 from "../images/album3.jpg";
@@ -189,6 +194,14 @@ function Songs({ albumname }) {
       played: "",
     },
   ];
+
+const Songs=[
+
+]
+
+
+
+
   let img = data.find((element) => {
     return element.name === albumname;
   });
@@ -240,6 +253,8 @@ function Songs({ albumname }) {
           </div>
         </div>
       </div>
+      <hr />
+      <div></div>
     </div>
   );
 }
