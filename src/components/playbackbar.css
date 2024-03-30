@@ -1,0 +1,20 @@
+.visible{
+    background-color: blue;
+    width: 95vw;
+    color: white;
+    height: 4rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.rowplay{
+    display: flex;
+    flex-direction: row;
+justify-content: space-between;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    column-gap: 1rem;
+}

@@ -1,7 +1,7 @@
 .display{
     border-radius: 1rem;
     background-color: #121212;
-    width: 100%;
+    width: 73vw;
     padding: 1rem;
     margin-top: 0;
     margin-bottom: 0.7vw;
@@ -136,5 +136,20 @@ margin: 0.2rem;
 
 .cards:hover{
     background-color: #202020;
+
+}
+
+.title{
+    height: 12rem;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.titleimage{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 1rem;
+    margin-right: 2rem;
 
 }

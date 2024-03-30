@@ -32,8 +32,9 @@ import podcast2 from "../images/podcast2.jpg";
 import podcast3 from "../images/podcast3.jpg";
 import podcast4 from "../images/podcast4.jpg";
 import podcast5 from "../images/podcast5.jpg";
+import { Link } from "react-router-dom";
 
-function Navbar({ send }) {
+function Navbar({ send, sAlbum }) {
   //data
 
   const data = [
@@ -272,6 +273,10 @@ function Navbar({ send }) {
     h.style.height = "17rem";
   }
 
+  const selectAlbum = (e) => {
+    sAlbum(e.target.id);
+  };
+
   return (
     <div>
       {libclick && (
@@ -316,17 +321,21 @@ function Navbar({ send }) {
                   filtered.map((each) => (
                     <tr>
                       <td>
-                        <button
+                        <Link
+                          to="/songs"
+                          id={each.name}
+                          onClick={selectAlbum}
                           className="lib"
                           style={{ background: "#121212" }}
                         >
                           <img
+                            id={each.name}
                             className="cover"
                             style={{ margin: 0 }}
                             src={each.image}
                             alt=""
                           />
-                        </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
@@ -340,10 +349,10 @@ function Navbar({ send }) {
           {!libclick && (
             <div>
               <div className="box">
-                <button className="textline">
+                <Link to="/" className="textline">
                   <MdHomeFilled size={30} style={{ marginRight: ".5rem" }} />
                   Home
-                </button>
+                </Link>
                 <button style={{ marginBottom: "0" }} className="textline">
                   <IoSearch size={30} style={{ marginRight: ".5rem" }} /> Search
                 </button>
@@ -454,13 +463,20 @@ function Navbar({ send }) {
                           <td>
                             <img className="cover" src={each.image} alt="" />
                           </td>
-                          <button
+                          <Link
+                            to="/songs"
+                            id={each.name}
+                            onClick={selectAlbum}
                             style={{ color: "white", background: "#121212" }}
                           >
-                            <td className="lib" style={{ paddingLeft: "1rem" }}>
+                            <td
+                              id={each.name}
+                              className="lib"
+                              style={{ paddingLeft: "1rem" }}
+                            >
                               {each.name}
                             </td>
-                          </button>
+                          </Link>
                           {expandAlive && (
                             <td
                               style={{
@@ -485,12 +501,17 @@ function Navbar({ send }) {
                           <td>
                             <img className="cover" src={each.image} alt="" />
                           </td>
-                          <button
+                          <Link
+                          to="/songs"
+                            id={each.name}
+                            onClick={selectAlbum} ///////////////////
                             className="lib"
                             style={{ background: "#121212" }}
                           >
-                            <td style={{ paddingLeft: "1rem" }}>{each.name}</td>
-                          </button>
+                            <td id={each.name} style={{ paddingLeft: "1rem" }}>
+                              {each.name}
+                            </td>
+                          </Link>
                           {expandAlive && (
                             <td style={{ color: "white", textAlign: "end" }}>
                               {each.date}

@@ -8,11 +8,14 @@ import "./app.css"
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Playlist from './components/playlist'
 import Podcast from './components/podcast'
+import Playbackbar from './components/playbackbar'
+import Songs from './components/songs'
 
 
 const App = () => {
   const [dataFromChild, setDataFromChild] = useState("");
   const [show, setshow]=useState("")
+  const [selectedAlbum, setselectedAlbum]=useState("Liked")
 
   function handle(data){
     setDataFromChild(!data)
@@ -20,19 +23,29 @@ const App = () => {
   function showdata(data){
     setshow(data)
   }
-  console.log(dataFromChild)
+  function selectalbum(data){
+    setselectedAlbum(data)
+  }
+ console.log(selectedAlbum)
+
   return (
 
     <div>
         <div className='row'>
-        <Navbar send={handle}/>
         <BrowserRouter>
+        <Routes>
+      <Route path='*' element={<Navbar send={handle} sAlbum={selectalbum}/>}/>
+     </Routes>
         <Routes>
           <Route path='/' element={<Display ex={dataFromChild} display={showdata}/>}/>
           <Route path='/playlist' element={<Playlist/>}/>
           <Route path='/playlist' element={<Podcast/>}/>
+          <Route path='/songs' element={<Songs albumname={selectedAlbum}/>}/>
         </Routes>
         </BrowserRouter>
+        </div>
+        <div>
+          <Playbackbar/>
         </div>
     </div>
   );
