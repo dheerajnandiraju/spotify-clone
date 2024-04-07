@@ -4,7 +4,7 @@ import {React, useState} from 'react'
 
 import Navbar from './components/navbar'
 import Display from './components/display'
-import "./app.css"
+import "./App.css"
 import { BrowserRouter, Route, Router, Routes } from 'react-router-dom'
 import Playlist from './components/playlist'
 import Podcast from './components/podcast'
