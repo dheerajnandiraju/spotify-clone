@@ -14,15 +14,16 @@ import cover7 from "../images/cover7.jpg";
 import cover8 from "../images/cover8.jpg";
 import cover9 from "../images/cover9.jpg";
 import cover10 from "../images/cover10.jpg";
-import song1 from "../images/song1.jpg"
-import song2 from "../images/song1.jpg"
-import song3 from "../images/song1.jpg"
-import song4 from "../images/song1.jpg"
-import song5 from "../images/song1.jpg"
-import song6 from "../images/song1.jpg"
-import song7 from "../images/song1.jpg"
-import song8 from "../images/song1.jpg"
-import song9 from "../images/song1.jpg"
+import song1 from "../images/song1.jpg";
+import song2 from "../images/song2.jpg";
+import song3 from "../images/song3.jpg";
+import song4 from "../images/song4.jpg";
+import song5 from "../images/song5.jpg";
+import song6 from "../images/song6.jpg";
+import song7 from "../images/song7.jpg";
+import song8 from "../images/song8.jpg";
+import song9 from "../images/song9.jpg";
+import song10 from "../images/song10.jpg";
 
 import album1 from "../images/album1.jpg";
 import album2 from "../images/album2.jpg";
@@ -36,8 +37,9 @@ import podcast4 from "../images/podcast4.jpg";
 import podcast5 from "../images/podcast5.jpg";
 import podcast6 from "../images/podcast6.jpg";
 import Display from "./display";
+import { CiClock2 } from "react-icons/ci";
 
-function Songs({ albumname }) {
+function Songs({ albumname, ex, ssong }) {
   const data = [
     {
       image: liked,
@@ -195,16 +197,105 @@ function Songs({ albumname }) {
     },
   ];
 
-const Songs=[
-
-]
-
-
-
+  const music = [
+    {
+      sno: 1,
+      name: "song 1",
+      Scover: song1,
+      date: "11-2-11",
+      time: "3:10",
+    },
+    {
+      sno: 2,
+      name: "song 2",
+      Scover: song2,
+      date: "31-7-22",
+      time: "2:28",
+    },
+    {
+      sno: 3,
+      name: "song 3",
+      Scover: song3,
+      date: "28-2-14",
+      time: "3:11",
+    },
+    {
+      sno: 4,
+      name: "song 4",
+      Scover: song4,
+      date: "8-9-19",
+      time: "4:10",
+    },
+    {
+      sno: 5,
+      name: "song 5",
+      Scover: song5,
+      date: "21-5-18",
+      time: "1:08",
+    },
+    {
+      sno: 6,
+      name: "song 6",
+      Scover: song6,
+      date: "12-2-10",
+      time: "4:08",
+    },
+    {
+      sno: 7,
+      name: "song 7",
+      Scover: song7,
+      date: "1-7-22",
+      time: "2:31",
+    },
+    {
+      sno: 8,
+      name: "song 8",
+      Scover: song8,
+      date: "22-6-21",
+      time: "2:28",
+    },
+    {
+      sno: 9,
+      name: "song 9",
+      Scover: song9,
+      date: "20-9-20",
+      time: "1:31",
+    },
+    {
+      sno: 10,
+      name: "song 10",
+      Scover: song10,
+      date: "12-3-12",
+      time: "2:51",
+    },
+  ];
 
   let img = data.find((element) => {
     return element.name === albumname;
   });
+  if (ex) {
+    let wi = document.getElementsByClassName("table");
+    for (let wi1 of wi) {
+      wi1.style.width = "58vw";
+    }
+    let w = document.getElementsByClassName("display");
+    for (let w1 of w) {
+      w1.style.width = "64vw";
+    }
+  }
+  if (!ex) {
+    let wi = document.getElementsByClassName("table");
+    for (let wi1 of wi) {
+      wi1.style.width = "65vw";
+    }
+    let w = document.getElementsByClassName("display");
+    for (let w1 of w) {
+      w1.style.width = "73vw";
+    }
+  }
+  const songselected = (e) => {
+    ssong(e.target.id);
+  };
   return (
     <div className="display">
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -253,8 +344,70 @@ const Songs=[
           </div>
         </div>
       </div>
-      <hr />
-      <div></div>
+      <hr style={{ borderColor: "black" }} />
+      <div>
+        <table width={{}}>
+          <thead>
+            <tr
+              className="table"
+              style={{
+                color: "grey",
+              }}
+            >
+              <td># Title</td>
+              <td>Album</td>
+              <td>Date Added</td>
+              <td>
+                <CiClock2 />
+              </td>
+            </tr>
+          </thead>
+          <div style={{ margin: "2rem 0rem 0rem 0rem" }}>
+            {music.map((each) => (
+              <tr>
+                <td
+                  className="row table"
+                  style={{
+                    color: "white",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ margin: "0rem 1rem 0rem 1rem" }}>
+                      {each.sno}
+                    </div>
+                    <img className="songs" src={each.Scover} alt="" />
+                    <button
+                      id={each.name}
+                      onClick={songselected}
+                      className="lib"
+                      style={{
+                        margin: "0rem 0rem 0rem 1rem",
+                        background: "rgb(0 0 0 / 0%)",
+                      }}
+                    >
+                      {each.name}
+                    </button>
+                  </div>
+                  <div>{albumname}</div>
+                  <div style={{ margin: "0rem 0rem 0rem 7rem" }}>
+                    {each.date}
+                  </div>
+                  <div style={{ margin: "0rem 0rem 0rem 6rem" }}>
+                    {each.time}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </div>
+        </table>
+      </div>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import Songs from './components/songs'
 
 
 const App = () => {
+  const[selectedsong, setselectedsong]=useState("song 1")
   const [dataFromChild, setDataFromChild] = useState("");
   const [show, setshow]=useState("")
   const [selectedAlbum, setselectedAlbum]=useState("Liked")
@@ -26,7 +27,10 @@ const App = () => {
   function selectalbum(data){
     setselectedAlbum(data)
   }
- console.log(selectedAlbum)
+  function songselected(data){
+    setselectedsong(data)
+  }
+ console.log(selectedsong)
 
   return (
 
@@ -38,14 +42,14 @@ const App = () => {
      </Routes>
         <Routes>
           <Route path='/' element={<Display ex={dataFromChild} display={showdata}/>}/>
-          <Route path='/playlist' element={<Playlist/>}/>
-          <Route path='/playlist' element={<Podcast/>}/>
-          <Route path='/songs' element={<Songs albumname={selectedAlbum}/>}/>
+          <Route path='/playlist' element={<Playlist ex={dataFromChild}/>}/>
+          <Route path='/podcast' element={<Podcast ex={dataFromChild}/>}/>
+          <Route path='/songs' element={<Songs ssong={songselected} albumname={selectedAlbum} ex={dataFromChild}/>}/>
         </Routes>
         </BrowserRouter>
         </div>
         <div>
-          <Playbackbar/>
+          <Playbackbar song={selectedsong}/>
         </div>
     </div>
   );

@@ -36,7 +36,7 @@ import podcast6 from "../images/podcast6.jpg";
 import context from "react-bootstrap/esm/AccordionContext";
 import { Link } from "react-router-dom";
 
-function Playlist({ display }) {
+function Playlist({ display, ex }) {
   const data = [
     {
       image: liked,
@@ -251,6 +251,18 @@ function Playlist({ display }) {
   let allplaylist = data.filter((element) => {
     return element.type === "Playlist";
   });
+  if (ex) {
+    let w = document.getElementsByClassName("display");
+    for (let w1 of w) {
+      w1.style.width = "64vw";
+    }
+  }
+  if (!ex) {
+    let w = document.getElementsByClassName("display");
+    for (let w1 of w) {
+      w1.style.width = "73vw";
+    }
+  }
   return (
     <div className="display">
       <div style={{ display: "flex", justifyContent: "space-between" }}>

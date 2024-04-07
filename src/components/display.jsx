@@ -227,6 +227,7 @@ function Display({ display, ex }) {
       played: "",
     },
   ];
+
   let last = data.slice(0, 8);
 
   const [content, setcontent] = useState("All");
@@ -273,11 +274,19 @@ function Display({ display, ex }) {
     playlist = playlist.slice(0, 5);
     last = last.slice(0, 6);
     podcast = podcast.slice(0, 5);
+    let w = document.getElementsByClassName("display");
+    for (let w1 of w) {
+      w1.style.width = "64vw";
+    }
   }
   if (!ex) {
     podcast = podcast.slice(0, 6);
     playlist = playlist.slice(0, 6);
     last = last.slice(0, 8);
+    let w = document.getElementsByClassName("display");
+    for (let w1 of w) {
+      w1.style.width = "73vw";
+    }
   }
   return (
     <div className="display">

@@ -130,7 +130,7 @@ margin: 0.2rem;
 }
 .cardimg{
     border-radius: 0.5rem;
-    height: 10.5rem;
+    height: 10rem;
     width: auto;
 }
 
@@ -152,5 +152,19 @@ margin: 0.2rem;
     border-radius: 1rem;
     margin-right: 2rem;
 
+}
+
+.songs{
+    margin: 0rem 0rem 1rem 0rem;
+ width: 3rem;
+ height: auto;
+ border-radius: 0.5rem;
+}
+
+.table{
+    width: 65vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
